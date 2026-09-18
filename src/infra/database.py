@@ -3,6 +3,7 @@ from pathlib import Path
 
 
 class DataBase():
+    
     def __init__(self):
         aqui = Path(__file__)
         infra = aqui.parent
@@ -20,7 +21,7 @@ class DataBase():
             ( id_personagem INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             id_classe INTEGER NOT NULL,
             nome TEXT NOT NULL,
-            nivelINTEGER NOT NULL,
+            nivel INTEGER NOT NULL,
             exp INTEGER NOT NULL,
             FOREIGN KEY (id_classe) references classe (id_classe))
         
@@ -39,9 +40,23 @@ class DataBase():
         """)
 
         self.cursor.execute("""
+        CREATE TABLE IF NOT EXISTS status
+        (id_status INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        id_personagem INTEGETER NOT NULL,
+        hp INTEGER NOT NULL,
+        energia INTEGER NOT NULL,
+        ca INTEGER NOT NULL,
+        hp_max INTEGER NOT NULL,
+        energia_max INTEGER NOT NULL,
+        FOREIGN KEY (id_personagem) REFERENCES personagem (id_personagem)) """)
+
+
+        self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS classe
             ( id_classe INTEGER NOT NULL PRIMARY KEY ,
             nome TEXT NOT NULL)
 
         """)
-        
+
+        self.conexao.commit()
+

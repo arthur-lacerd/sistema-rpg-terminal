@@ -8,9 +8,6 @@ class Defaut():
     def __str__(self):
         return f"{self.nome}"
 
-
-
-
 class Guerreiro(Defaut):
     def __init__(self):
         super().__init__()
