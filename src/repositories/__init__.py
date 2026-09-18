@@ -1,0 +1,4 @@
+from .atributoRepository import AtributoRepository
+from .classeRepository import ClasseRepository
+from .personagemRepository import PersonagemRepositoy
+from .statusRepository import StatusRepository
